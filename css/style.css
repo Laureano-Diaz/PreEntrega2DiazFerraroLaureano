@@ -1,4 +1,11 @@
 /* Estilos generales */
+*{
+  font-family: 'Josefin Sans', sans-serif;}
+.fondo{
+  background-image: url(../img/fondo-pagina.png);
+  margin:  0;
+  padding: 10% 0;
+}
 header {
     background-color: #d10909c2;
     color: black;
@@ -16,6 +23,7 @@ header {
     margin: 0;
     padding: 0;
     display: flex;
+    font-size: 1.75rem;
   }
   
   nav ul li {
@@ -32,10 +40,125 @@ header {
   nav ul li a:hover {
     background-color: #fff;
     color: #333;
+    border-radius: 20px;
+    transition: 0s;
   }
   
   .logo img {
     height: 80px;
   }
+
+  .datos{
+    text-align: center;
+    border: 1px solid rgb(105, 96, 96);
+    border-radius: 20px;
+    margin: 2% 20%;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 5.5);
+    background-color: white;
+    padding: 5% 0;
+  }
+  h1{
+    font-size: 2.25rem;
+  }
+
+  label {
+    font-size: 1.5rem;
+  }
+  input, button{
+    border-radius: 10px;
+    padding: 1%;
+  }
+  select{
+    border-radius: 6%;
+    font-size: 1rem;
+    margin: 2%;
+  }
+
+  #pagarButton, #borrarTodoButton{
+    margin-bottom: 2%;
+  }
   
-  
+  ul li{
+    list-style-type: none;
+  }
+  button{
+    font-size: 1rem;
+  }
+
+  footer {
+  position: relative;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: #d10909c2;
+  color: white;
+  border-top: solid 2px black;
+  color: #d7d2d2;
+}
+footer .footer-contenedor {
+  height: -moz-fit-content;
+  height: fit-content;
+  width: 100%;
+  padding: 3rem 6rem;
+  box-sizing: border-box;
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+}
+footer .footer-contenedor .footer-content-contenedor {
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-start;
+  flex-direction: column;
+}
+footer .footer-contenedor .footer-content-contenedor .footer-info, footer .footer-contenedor .footer-content-contenedor .menu-item-footer, footer .footer-contenedor .footer-content-contenedor .social {
+  margin: 0.2rem 0;
+  opacity: 0.7;
+  color: white;
+  text-decoration: none;
+  transition: 0.5s;
+}
+footer .footer-contenedor .footer-content-contenedor .footer-info .menu-item-footer:hover, footer .footer-contenedor .footer-content-contenedor .menu-item-footer .menu-item-footer:hover, footer .footer-contenedor .footer-content-contenedor .social .menu-item-footer:hover {
+  opacity: 1;
+}
+footer .footer-contenedor .footer-content-contenedor .social {
+  display: flex;
+  height: auto;
+  width: 100%;
+}
+footer .footer-contenedor .footer-content-contenedor .titulo-logo {
+  margin-bottom: 1.2rem;
+  font-size: 2.5rem;
+  color: white;
+}
+footer .footer-menu {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  width: 40%;
+}
+footer .menu-titulo {
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-transform: uppercase;
+  margin-bottom: 1.2rem;
+}
+footer .copyright-contenedor {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-top: 1px solid black;
+}
+footer .copyright {
+  font-size: 12px;
+  opacity: 0.7;
+  font-weight: 400;
+  padding: 10px 0;
+  color: white;
+}
+
+.compra{
+  text-align: center;
+  font-size: 2.25rem;
+}

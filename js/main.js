@@ -1,63 +1,115 @@
-let nombre = prompt("Ingresa tu nombre")
-let sucursal= parseInt(prompt("Bienvenido/a "+ nombre + "!\n"+"Indica el numero de sucursal a la que deseas enviar tu pedido\n"+"1-Rosario\n2-Paraná\n3-Puerto Madryn"))
-let kilos =parseInt(prompt("Ingresa los kilos del producto que deseas enviar."));
+document.addEventListener("DOMContentLoaded", function() {
+  const sucursalDestinoSelect = document.getElementById("sucursalDestinoSelect");
+  const kilosInput = document.getElementById("kilosInput");
+  const calcularButton = document.getElementById("calcularButton");
+  const productosList = document.getElementById("productosList");
+  const totalMensaje = document.getElementById("totalMensaje");
+  const borrarTodoButton = document.getElementById("borrarTodoButton");
 
-//Acumula lo que se va a enviar
-kilosAgregados = []
+  calcularButton.addEventListener("click", function() {
+    let sucursalDestino = sucursalDestinoSelect.value;
+    let kilos = parseInt(kilosInput.value);
 
-var seleccionSucursal;
-//Sucursal a la que se desea enviar
-switch (sucursal) {
-  case 1:
-    seleccionSucursal = {
-      nombre: "Rosario",
-      costo: 52.7,
+    if (sucursalDestino === "") {
+      totalMensaje.textContent = "Por favor, selecciona la sucursal de destino.";
+      return;
+    }
+
+    let costoEnvio = calcularCostoEnvio(sucursalDestino, kilos);
+    let producto = {
+      sucursalSalida: "Rosario",
+      sucursalDestino: sucursalDestinoSelect.options[sucursalDestino - 1].text,
+      kilos: kilos,
+      costo: costoEnvio
     };
-    break;
-  case 2:
-    seleccionSucursal = {
-      nombre: "Paraná",
-      costo: 105.9,
-    };
-    break;
-  case 3:
-    seleccionSucursal = {
-      nombre: "Puerto Madryn",
-      costo: 236.3,
-    };
-    break;
-  default:
-    // Sucursal inválida o no reconocida
-    alert("La sucursal ingresada no es válida.");
-    break;
-}
 
-console.log("La sucursal seleccionada es " + seleccionSucursal.nombre);
+    let productos = JSON.parse(sessionStorage.getItem("productos")) || [];
+    productos.push(producto);
+    sessionStorage.setItem("productos", JSON.stringify(productos));
 
-//Ingresa la cantidad de productos que desea.
-while (kilos != "0") {
-    
-    console.log("Ingresaste " + kilos + " kilos.");
+    actualizarListaProductos(productos);
+    actualizarTotal(productos);
 
-    kilosAgregados.push(kilos);
-    
-    //Condicion de salida
-    kilos =parseInt(prompt("Ingresa los kilos del nuevo producto que deseas enviar.\nSi no deseas enviar mas productos, ingresa 0."))
-}
- 
-//Se calcula lo que se envia por el costo
-function precioFinal(seleccionSucursal, kilosAgregados) {
-    var sumarKilos = kilosAgregados.reduce(function(a, b) {
-      return a + b;
-    }, 0);
-  
-    return sumarKilos * seleccionSucursal.costo;
+    kilosInput.value = "";
+    kilosInput.placeholder = "0";
+    sucursalDestinoSelect.disabled = true;
+  });
+//Elimina los items para volver a empezar
+  borrarTodoButton.addEventListener("click", function() {
+    sessionStorage.removeItem("productos");
+    sucursalDestinoSelect.disabled = false;
+    productosList.innerHTML = "";
+    totalMensaje.textContent = "";
+  });
+//Costo de envio segun seleccion
+  function calcularCostoEnvio(sucursalDestino, kilos) {
+    let sucursales = [
+      { nombre: "Rosario", costo: 52.7 },
+      { nombre: "Paraná", costo: 105.9 },
+      { nombre: "Puerto Madryn", costo: 236.3 },
+      { nombre: "La Pampa", costo: 82.5 }
+    ];
+
+    let seleccionSucursalDestino = sucursales[parseInt(sucursalDestino) - 1];
+
+    return seleccionSucursalDestino.costo * kilos;
   }
- 
-  var resultado = precioFinal(seleccionSucursal, kilosAgregados);
-console.log(resultado);
 
-//Se notifica el monto a pagar
- console.log("El monto a abonar es de $" + resultado.toLocaleString()+ ".");   
-alert("El monto a abonar es de $" + resultado.toLocaleString()+ ".")
- 
+  function actualizarListaProductos(productos) {
+    productosList.innerHTML = "";
+
+    for (let i = 0; i < productos.length; i++) {
+      let producto = productos[i];
+      let listItem = document.createElement("li");
+      let numeroProducto = i + 1;
+
+      listItem.textContent = `${numeroProducto}: ${producto.kilos} kg - $${producto.costo.toLocaleString(undefined, {
+        minimumFractionDigits: 2,
+        maximumFractionDigits: 2
+      })}`;
+
+      // Crear el elemento de imagen del basurero
+      let basureroImg = document.createElement("img");
+      basureroImg.src = "../img/x-circle.svg";
+      basureroImg.alt = "Eliminar";
+      basureroImg.classList.add("basurero"); 
+
+      // Agregar un evento de clic para manejar la eliminación del producto
+      basureroImg.addEventListener("click", function() {
+        eliminarProducto(i);
+      });
+
+      listItem.appendChild(basureroImg);
+
+      productosList.appendChild(listItem);
+    }
+  }
+
+  function eliminarProducto(index) {
+    let productos = JSON.parse(sessionStorage.getItem("productos")) || [];
+    productos.splice(index, 1);
+    sessionStorage.setItem("productos", JSON.stringify(productos));
+
+    actualizarListaProductos(productos);
+    actualizarTotal(productos);
+  }
+
+  function actualizarTotal(productos) {
+    let total = 0;
+    let totalKilos = 0;
+
+    for (let i = 0; i < productos.length; i++) {
+      total += productos[i].costo;
+      totalKilos += productos[i].kilos;
+    }
+
+    totalMensaje.textContent = `Total a abonar: $${total.toLocaleString(undefined, {
+      minimumFractionDigits: 2,
+      maximumFractionDigits: 2
+    })} (${totalKilos.toLocaleString()} kg)`;
+  }
+
+  let productos = JSON.parse(sessionStorage.getItem("productos")) || [];
+  actualizarListaProductos(productos);
+  actualizarTotal(productos);
+});
