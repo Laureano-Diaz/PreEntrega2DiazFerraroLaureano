@@ -1,91 +1,99 @@
 /* Estilos generales */
-*{
-  font-family: 'Josefin Sans', sans-serif;}
-.fondo{
+* {
+  font-family: 'Josefin Sans', sans-serif;
+}
+
+.fondo {
   background-image: url(../img/fondo-pagina.png);
-  margin:  0;
+  margin: 0;
   padding: 10% 0;
 }
+
 header {
-    background-color: #d10909c2;
-    color: black;
-    padding: 20px;
-  }
-  
-  nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-  }
-  
-  nav ul {
-    list-style: none;
-    margin: 0;
-    padding: 0;
-    display: flex;
-    font-size: 1.75rem;
-  }
-  
-  nav ul li {
-    margin: 0 10px;
-  }
-  
-  nav ul li a {
-    color: white;
-    text-decoration: none;
-    transition: all 0.3s ease;
-    padding: 10px;
-  }
-  
-  nav ul li a:hover {
-    background-color: #fff;
-    color: #333;
-    border-radius: 20px;
-    transition: 0s;
-  }
-  
-  .logo img {
-    height: 80px;
-  }
+  background-color: #d10909c2;
+  color: black;
+  padding: 20px;
+}
 
-  .datos{
-    text-align: center;
-    border: 1px solid rgb(105, 96, 96);
-    border-radius: 20px;
-    margin: 2% 20%;
-    box-shadow: 0 0 15px rgba(0, 0, 0, 5.5);
-    background-color: white;
-    padding: 5% 0;
-  }
-  h1{
-    font-size: 2.25rem;
-  }
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
 
-  label {
-    font-size: 1.5rem;
-  }
-  input, button{
-    border-radius: 10px;
-    padding: 1%;
-  }
-  select{
-    border-radius: 6%;
-    font-size: 1rem;
-    margin: 2%;
-  }
+nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  font-size: 1.75rem;
+}
 
-  #pagarButton, #borrarTodoButton{
-    margin-bottom: 2%;
-  }
-  
-  ul li{
-    list-style-type: none;
-  }
-  button{
-    font-size: 1rem;
-  }
+nav ul li {
+  margin: 0 10px;
+}
 
-  footer {
+nav ul li a {
+  color: white;
+  text-decoration: none;
+  transition: all 0.3s ease;
+  padding: 10px;
+}
+
+nav ul li a:hover {
+  background-color: #fff;
+  color: #333;
+  border-radius: 20px;
+  transition: 0s;
+}
+
+.logo img {
+  height: 80px;
+}
+
+.datos {
+  text-align: center;
+  border: 1px solid rgb(105, 96, 96);
+  border-radius: 20px;
+  margin: 2% 20%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 5.5);
+  background-color: white;
+  padding: 5% 0;
+}
+
+h1 {
+  font-size: 2.25rem;
+}
+
+label {
+  font-size: 1.5rem;
+  display: block;
+  margin-bottom: 10px;
+}
+
+input,button {
+  border-radius: 10px;
+  padding: 1%;
+  margin-bottom: 10px
+}
+
+select {
+  border-radius: 6%;
+  font-size: 1rem;
+  margin: 2%;
+}
+
+#pagarButton,
+#borrarTodoButton {
+  margin-bottom: 2%;
+}
+
+ul li {
+  list-style-type: none;
+}
+
+
+footer {
   position: relative;
   bottom: 0;
   left: 0;
@@ -95,6 +103,7 @@ header {
   border-top: solid 2px black;
   color: #d7d2d2;
 }
+
 footer .footer-contenedor {
   height: -moz-fit-content;
   height: fit-content;
@@ -105,44 +114,56 @@ footer .footer-contenedor {
   justify-content: space-between;
   align-items: flex-start;
 }
+
 footer .footer-contenedor .footer-content-contenedor {
   display: flex;
   justify-content: flex-start;
   align-items: flex-start;
   flex-direction: column;
 }
-footer .footer-contenedor .footer-content-contenedor .footer-info, footer .footer-contenedor .footer-content-contenedor .menu-item-footer, footer .footer-contenedor .footer-content-contenedor .social {
+
+footer .footer-contenedor .footer-content-contenedor .footer-info,
+footer .footer-contenedor .footer-content-contenedor .menu-item-footer,
+footer .footer-contenedor .footer-content-contenedor .social {
   margin: 0.2rem 0;
   opacity: 0.7;
   color: white;
   text-decoration: none;
   transition: 0.5s;
 }
-footer .footer-contenedor .footer-content-contenedor .footer-info .menu-item-footer:hover, footer .footer-contenedor .footer-content-contenedor .menu-item-footer .menu-item-footer:hover, footer .footer-contenedor .footer-content-contenedor .social .menu-item-footer:hover {
+
+footer .footer-contenedor .footer-content-contenedor .footer-info .menu-item-footer:hover,
+footer .footer-contenedor .footer-content-contenedor .menu-item-footer .menu-item-footer:hover,
+footer .footer-contenedor .footer-content-contenedor .social .menu-item-footer:hover {
   opacity: 1;
 }
+
 footer .footer-contenedor .footer-content-contenedor .social {
   display: flex;
   height: auto;
   width: 100%;
 }
+
 footer .footer-contenedor .footer-content-contenedor .titulo-logo {
   margin-bottom: 1.2rem;
   font-size: 2.5rem;
   color: white;
 }
+
 footer .footer-menu {
   display: flex;
   justify-content: space-between;
   align-items: flex-start;
   width: 40%;
 }
+
 footer .menu-titulo {
   font-size: 1.25rem;
   font-weight: 400;
   text-transform: uppercase;
   margin-bottom: 1.2rem;
 }
+
 footer .copyright-contenedor {
   width: 100%;
   display: flex;
@@ -150,6 +171,7 @@ footer .copyright-contenedor {
   align-items: center;
   border-top: 1px solid black;
 }
+
 footer .copyright {
   font-size: 12px;
   opacity: 0.7;
@@ -158,7 +180,7 @@ footer .copyright {
   color: white;
 }
 
-.compra{
+.compra {
   text-align: center;
   font-size: 2.25rem;
 }

@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function() {
   const totalMensaje = document.getElementById("totalMensaje");
   const borrarTodoButton = document.getElementById("borrarTodoButton");
 
-  calcularButton.addEventListener("click", function() {
+  calcularButton.addEventListener("click", async function() {
     let sucursalDestino = sucursalDestinoSelect.value;
     let kilos = parseInt(kilosInput.value);
 
@@ -28,20 +28,34 @@ document.addEventListener("DOMContentLoaded", function() {
     sessionStorage.setItem("productos", JSON.stringify(productos));
 
     actualizarListaProductos(productos);
-    actualizarTotal(productos);
+    await actualizarTotal(productos);
 
     kilosInput.value = "";
     kilosInput.placeholder = "0";
     sucursalDestinoSelect.disabled = true;
+
+    // Mostrar notificación con Toastify
+    Toastify({
+      text: "Agregaste el producto a tu carrito",
+      backgroundColor: "green",
+      duration: 3000
+    }).showToast();
   });
-//Elimina los items para volver a empezar
+
   borrarTodoButton.addEventListener("click", function() {
     sessionStorage.removeItem("productos");
     sucursalDestinoSelect.disabled = false;
     productosList.innerHTML = "";
     totalMensaje.textContent = "";
+
+    // Mostrar notificación con Toastify
+    Toastify({
+      text: "Carrito vaciado correctamente",
+      backgroundColor: "red",
+      duration: 3000
+    }).showToast();
   });
-//Costo de envio segun seleccion
+
   function calcularCostoEnvio(sucursalDestino, kilos) {
     let sucursales = [
       { nombre: "Rosario", costo: 52.7 },
@@ -68,13 +82,11 @@ document.addEventListener("DOMContentLoaded", function() {
         maximumFractionDigits: 2
       })}`;
 
-      // Crear el elemento de imagen del basurero
       let basureroImg = document.createElement("img");
       basureroImg.src = "../img/x-circle.svg";
       basureroImg.alt = "Eliminar";
-      basureroImg.classList.add("basurero"); 
+      basureroImg.classList.add("basurero");
 
-      // Agregar un evento de clic para manejar la eliminación del producto
       basureroImg.addEventListener("click", function() {
         eliminarProducto(i);
       });
@@ -92,21 +104,43 @@ document.addEventListener("DOMContentLoaded", function() {
 
     actualizarListaProductos(productos);
     actualizarTotal(productos);
+
+    // Mostrar notificación con Toastify
+    Toastify({
+      text: "Eliminaste el producto del carrito",
+      backgroundColor: "red",
+      duration: 2000
+    }).showToast();
   }
 
-  function actualizarTotal(productos) {
+  async function actualizarTotal(productos) {
     let total = 0;
     let totalKilos = 0;
+    let totalDiasEnvio = 0;
 
     for (let i = 0; i < productos.length; i++) {
       total += productos[i].costo;
       totalKilos += productos[i].kilos;
     }
 
+    const response = await fetch('../json/datos.json');
+    const data = await response.json();
+    totalDiasEnvio = calcularDiasEnvio(totalKilos, data);
+
     totalMensaje.textContent = `Total a abonar: $${total.toLocaleString(undefined, {
       minimumFractionDigits: 2,
       maximumFractionDigits: 2
-    })} (${totalKilos.toLocaleString()} kg)`;
+    })} (${totalKilos.toLocaleString()} kg). Llegada estimada en ${totalDiasEnvio} días.`;
+  }
+
+  function calcularDiasEnvio(kilos, data) {
+    const envio = data.find((item) => kilos >= item.min && kilos <= item.max);
+
+    if (envio) {
+      return envio.dias;
+    } else {
+      return 'No disponible';
+    }
   }
 
   let productos = JSON.parse(sessionStorage.getItem("productos")) || [];

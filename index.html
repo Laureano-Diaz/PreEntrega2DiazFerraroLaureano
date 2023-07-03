@@ -10,6 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./lib/toastify.css">
     
 </head>
 <body>
@@ -49,7 +50,7 @@
   <label for="kilosInput">Kilos:</label>
   <input type="number" id="kilosInput" placeholder="0">
 
-  <button id="calcularButton">Calcular Envío</button>
+  <button id="calcularButton">Agregar producto</button>
 
   <br><br>
 
@@ -58,10 +59,11 @@
 
   <h3 id="totalMensaje"></h3>
 
-  <button id="pagarButton">Ir a Pagar</button>
+  <a href="./pages/pago.html"><button id="pagarButton">Ir a Pagar</button></a>
   <button id="borrarTodoButton">Borrar Todo</button>
       </div>
 </div>
+</body>
 <footer>
   <div class="footer-contenedor">
     <div class="footer-content-contenedor">
@@ -74,10 +76,10 @@
         <div class="footer-content-contenedor">
             <span class="menu-titulo">menu</span>
             <a href="#" class="menu-item-footer">Inicio</a>
-            <a href="./pages/nosotros.html" class="menu-item-footer">Productos</a>
-            <a href="./pages/materiales.html" class="menu-item-footer">Servicios</a>
-            <a href="./pages/servicios.html" class="menu-item-footer">Acerca de</a>
-            <a href="./pages/contacto.html" class="menu-item-footer">Contacto</a>
+            <a href="#" class="menu-item-footer">Productos</a>
+            <a href="#" class="menu-item-footer">Servicios</a>
+            <a href="#" class="menu-item-footer">Acerca de</a>
+            <a href="#" class="menu-item-footer">Contacto</a>
         </div>
         <div class="footer-content-contenedor">
           <span class="menu-titulo">Más Informacion</span>
@@ -103,5 +105,7 @@
 
 
   <script src="./js/main.js"></script>
+  <script src="./lib/toastify-es.js"></script>
+  <script src="./lib/toastify.js"></script>
 
 </html>

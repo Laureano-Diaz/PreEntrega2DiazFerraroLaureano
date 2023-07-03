@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Transportes Script - Pago</title>
+    <link rel="shortcut icon" href="../img/logo-transporte-script.png" type="image/x-icon">
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Josefin+Sans:ital,wght@0,200;0,300;0,400;1,500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="./lib/toastify.css">
+    
+</head>
+<header>
+    <nav>
+      <div class="logo">
+        <a href="#">
+          <img src="../img/logo-transporte-script.png" alt="Logo de la empresa">
+        </a>
+      </div>
+      <div class="menu-icon">
+      </div>
+      <ul class="menu">
+        <li><a href="../index.html">Inicio</a></li>
+        <li><a href="#">Productos</a></li>
+        <li><a href="#">Servicios</a></li>
+        <li><a href="#">Acerca de</a></li>
+        <li><a href="#">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+<body>
+    <div class="fondo">
+        <div class="datos">
+            <h1>Formulario de Pago</h1>
+            <form action="./compra.html">
+            <label for="nombre">Nombre:</label>
+            <input type="text" id="nombre" name="nombre">
+    
+            <label for="tarjeta">Número de Tarjeta:</label>
+            <input type="text" id="tarjeta" name="tarjeta">
+    
+            <label for="expiracion">Fecha de Expiración:</label>
+            <input type="text" id="expiracion" name="expiracion">
+    
+            <label for="cvv">CVV:</label>
+            <input type="text" id="cvv" name="cvv">
+    
+            <label for="codigoPostal">Código Postal:</label>
+            <input type="text" id="codigoPostal" name="codigoPostal">
+    
+            <a href="./compra.html"><button type="submit" id="pagarButton">Pagar</button></a>
+            </form>
+        </div>
+    </div>
+</body>
+<footer>
+    <div class="footer-contenedor">
+      <div class="footer-content-contenedor">
+          <h3 class="titulo-logo">Transporte Script</h3>
+          <span class="footer-info">(011) 4568-9167 / 9267 / 9357</span>
+          <span class="footer-info">info@transportescript.com.ar</span>
+          <span  class="footer-info"> Tinogasta 5445, CP1407, Ciudad Autonoma de Buenos Aires</span>
+      </div>
+      <div class="footer-menu">
+          <div class="footer-content-contenedor">
+              <span class="menu-titulo">menu</span>
+              <a href="../index.html" class="menu-item-footer">Inicio</a>
+              <a href="#" class="menu-item-footer">Productos</a>
+              <a href="#" class="menu-item-footer">Servicios</a>
+              <a href="#" class="menu-item-footer">Acerca de</a>
+              <a href="#" class="menu-item-footer">Contacto</a>
+          </div>
+          <div class="footer-content-contenedor">
+            <span class="menu-titulo">Más Informacion</span>
+            <a href="#" class="menu-item-footer">Terminos y Condiciones</a>
+            <a href="#" class="menu-item-footer">Ayuda</a>
+            <a href="#" class="menu-item-footer">Trabaja con nosotros</a>
+        </div>
+      </div>
+      
+      <div class="footer-content-contenedor">
+          <span class="menu-titulo">Seguinos</span>
+          <div class="social-contenedor">
+              <a href="https://www.instagram.com/" target="_blank" class="social"><img src="../img/instagram.svg" alt="instagram">Instagram</a>
+              <a href="https://twitter.com/?lang=es" target="_blank" class="social"><img src="../img/twitter.svg" alt="twitter"> Twitter</a>
+              <a href="https://ar.linkedin.com/" target="_blank" class="social"><img src="../img/linkedin.svg" alt="linkedin"> LinkedIn</a>
+          </div>
+      </div>
+  </div>
+  <div class="copyright-contenedor">
+      <span class="copyright">Copyright 2023, Transporte Script. Todos los derechos reservados.</span>
+  </div>
+  </footer>
+</html>
